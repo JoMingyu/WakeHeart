@@ -12,9 +12,6 @@ class ChangePW(Resource):
         pw = request.form.get('pw')
 
         user = UserModel.objects(id=current_identity).first()
-        if not user:
-            return '', 204
-        else:
-            user.update(pw=pw)
+        user.update(pw=pw)
 
-            return '', 201
+        return '', 201
