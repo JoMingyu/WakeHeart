@@ -4,6 +4,9 @@ from flask_restful_swagger_2 import Api
 from logging.handlers import RotatingFileHandler
 from logging import Formatter, INFO
 
+from routes.api.account.signup import Signup
+from routes.api.account.after_signup import ChangePW
+
 
 def decorate(app):
     """
@@ -51,4 +54,7 @@ def add_resource(app):
 
     :rtype: None
     """
-    api = Api(app, api_version=app.config['API_VERSIOn'], title=app.config['API_TITLE'], description=app.config['API_DESC'])
+    api = Api(app, api_version=app.config['API_VER'], title=app.config['API_TITLE'], description=app.config['API_DESC'])
+
+    api.add_resource(Signup, '/signup')
+    api.add_resource(ChangePW, '/change-pw')
