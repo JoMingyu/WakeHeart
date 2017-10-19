@@ -6,6 +6,7 @@ from routes.api.account import after_signup_doc
 
 
 class ChangePW(Resource):
+    @swagger.doc(after_signup_doc.CHANGE_PW)
     @jwt_required()
     def post(self):
         pw = request.form.get('pw')
