@@ -6,7 +6,11 @@ from logging import Formatter, INFO
 
 from routes.api.account.signup import Signup
 from routes.api.account.after_signup import ChangePW, ChangeInfo
+
 from routes.api.heart.heart_rate import HeartRate, DateRangeBasedHeartRate
+
+from routes.api.rest_area.rest_area import RestArea
+from routes.api.wise_saying.wise_saying import WiseSaying
 
 
 def decorate(app):
@@ -63,3 +67,6 @@ def add_resource(app):
 
     api.add_resource(HeartRate, '/heart-rate')
     api.add_resource(DateRangeBasedHeartRate, '/heart-rate/range')
+
+    api.add_resource(RestArea, '/rest-area')
+    api.add_resource(WiseSaying, '/wise-saying')

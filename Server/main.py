@@ -5,6 +5,8 @@ from flask_jwt import JWT
 import preprocessor
 from support import jwt
 
+from support.api_interaction import wise_saying, rest_area
+
 
 def create_app():
     """
@@ -25,4 +27,6 @@ _app = create_app()
 
 
 if __name__ == '__main__':
+    wise_saying.parse()
+    rest_area.parse()
     _app.run(port=_app.config['PORT'], debug=True)
