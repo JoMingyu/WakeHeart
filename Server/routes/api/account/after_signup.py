@@ -11,13 +11,13 @@ class ChangePW(Resource):
     def post(self):
         pw = request.form.get('pw')
 
-        user = UserModel.objects(id=current_identity).first()
-        user.update(pw=pw)
+        UserModel.objects(id=current_identity).first().update(pw=pw)
 
         return '', 201
 
 
 class ChangeInfo(Resource):
+    @swagger.doc(after_signup_doc.CHANGE_INFO)
     @jwt_required()
     def post(self):
         position = request.form.get('position', type=int)
