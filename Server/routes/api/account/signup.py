@@ -9,12 +9,13 @@ class Signup(Resource):
     def post(self):
         id = request.form.get('id')
         pw = request.form.get('pw')
+        position = request.form.get('position', type=int, default=2)
         sex = request.form.get('sex')
         age = request.form.get('age', type=int)
 
         if UserModel.objects(id=id):
             return '', 204
         else:
-            UserModel(id=id, pw=pw, sex=sex, age=age).save()
+            UserModel(id=id, pw=pw, position=position, sex=sex, age=age).save()
 
             return '', 201

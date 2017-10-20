@@ -15,6 +15,12 @@ SIGNUP = {
             'type': 'str'
         },
         {
+            'name': 'position',
+            'description': '포지션(학생: 0, 운전자: 1, 일반: 2, 기본값 2)',
+            'in': 'formData',
+            'type': 'int'
+        },
+        {
             'name': 'sex',
             'description': '성별',
             'in': 'formData',
