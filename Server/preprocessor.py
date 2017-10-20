@@ -5,7 +5,8 @@ from logging.handlers import RotatingFileHandler
 from logging import Formatter, INFO
 
 from routes.api.account.signup import Signup
-from routes.api.account.after_signup import ChangePW
+from routes.api.account.after_signup import ChangePW, ChangeInfo
+from routes.api.heart.heart_rate import HeartRate, DateRangeBasedHeartRate
 
 
 def decorate(app):
@@ -57,4 +58,8 @@ def add_resource(app):
     api = Api(app, api_version=app.config['API_VER'], title=app.config['API_TITLE'], description=app.config['API_DESC'])
 
     api.add_resource(Signup, '/signup')
-    api.add_resource(ChangePW, '/change-pw')
+    api.add_resource(ChangePW, '/change/pw')
+    api.add_resource(ChangeInfo, '/change/info')
+
+    api.add_resource(HeartRate, '/heart-rate')
+    api.add_resource(DateRangeBasedHeartRate, '/heart-rate/range')

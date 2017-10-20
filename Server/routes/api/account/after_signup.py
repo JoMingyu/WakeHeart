@@ -15,3 +15,15 @@ class ChangePW(Resource):
         user.update(pw=pw)
 
         return '', 201
+
+
+class ChangeInfo(Resource):
+    @jwt_required()
+    def post(self):
+        position = request.form.get('position', type=int)
+        sex = request.form.get('sex')
+        age = request.form.get('age', type=int)
+
+        UserModel.objects(id=current_identity).first().update(position=position, sex=sex, age=age)
+
+        return '', 201
