@@ -1,4 +1,4 @@
-from flask_restful_swagger_2 import Resource, request, swagger
+from flask_restful_swagger_2 import Resource, swagger
 
 from db.models.wise_saying import WiseSayingModel
 from routes.api.wise_saying import wise_saying_doc
