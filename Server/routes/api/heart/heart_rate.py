@@ -4,6 +4,7 @@ from flask_restful_swagger_2 import Resource, request, swagger
 from flask_jwt import current_identity, jwt_required
 
 from db.models.heart_rate import HeartRateModel
+from routes.api.heart import heart_rate_doc
 
 
 def daterange(d1, d2):
@@ -11,6 +12,7 @@ def daterange(d1, d2):
 
 
 class HeartRate(Resource):
+    @swagger.doc(heart_rate_doc.HEART_RATE_POST)
     @jwt_required()
     def post(self):
         rate = request.form.get('rate', type=int)
@@ -20,6 +22,7 @@ class HeartRate(Resource):
 
         return '', 201
 
+    @swagger.doc(heart_rate_doc.HEART_RATE_GET)
     @jwt_required()
     def get(self):
         date_ = request.args.get('date')
@@ -35,6 +38,7 @@ class HeartRate(Resource):
 
 
 class DateRangeBasedHeartRate(Resource):
+    @swagger.doc(heart_rate_doc.DATE_RANGE_BASED_HEART_RATE)
     @jwt_required()
     def get(self):
         start_date = request.args.get('start_date')
