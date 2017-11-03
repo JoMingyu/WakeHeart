@@ -87,7 +87,7 @@ DATE_RANGE_BASED_HEART_RATE = {
                         'rate': 108
                     },
                     {
-                        'date': '2017, 10, 18',
+                        'date': '2017-10-18',
                         'rate': 95
                     }
                 ]

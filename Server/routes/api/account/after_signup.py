@@ -11,7 +11,7 @@ class ChangePW(Resource):
     def post(self):
         pw = request.form.get('pw')
 
-        UserModel.objects(id=current_identity).first().update(pw=pw)
+        UserModel.objects(id=str(current_identity)).first().update(pw=pw)
 
         return '', 201
 
@@ -24,6 +24,6 @@ class ChangeInfo(Resource):
         sex = request.form.get('sex')
         age = request.form.get('age', type=int)
 
-        UserModel.objects(id=current_identity).first().update(position=position, sex=sex, age=age)
+        UserModel.objects(id=str(current_identity)).first().update(position=position, sex=sex, age=age)
 
         return '', 201
