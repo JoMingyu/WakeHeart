@@ -16,8 +16,8 @@ class HeartRate(Resource):
     @jwt_required()
     def post(self):
         rate = request.form.get('rate', type=int)
-        HeartRateModel.objects(_id=str(current_identity), date=str(date.today())).delete()
-        HeartRateModel(_id=str(current_identity), rate=rate).save()
+        HeartRateModel.objects(id_=str(current_identity), date=str(date.today())).delete()
+        HeartRateModel(id_=str(current_identity), date=str(date.today()), rate=rate).save()
 
         return '', 201
 
@@ -26,7 +26,7 @@ class HeartRate(Resource):
     def get(self):
         date_ = request.args.get('date')
 
-        heart_rate = HeartRateModel.objects(_id=str(current_identity), date=date_)
+        heart_rate = HeartRateModel.objects(id_=str(current_identity), date=date_)
 
         if not heart_rate:
             return '', 204
@@ -46,7 +46,8 @@ class DateRangeBasedHeartRate(Resource):
         dates = [str(d) for d in daterange(start_date, end_date)]
         heart_rates = list()
         for date_ in dates:
-            heart_rate = HeartRateModel.objects(_id=str(current_identity), date=date_).first()
+            print(date_)
+            heart_rate = HeartRateModel.objects(id_=str(current_identity), date=date_).first()
             heart_rates.append({
                 'date': heart_rate.date if heart_rate else None,
                 'rate': heart_rate.rate if heart_rate else None
